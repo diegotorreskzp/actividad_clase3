@@ -17,15 +17,18 @@ class TablaGeneral:
         self.nombre = nombre
         self.descripcion = descripcion
         self.prioridad = prioridad
-    def mostrarlista():
-        for indice,producto in enumerate(lista):
-            print(f'{indice}: {producto}')
-    def agregar():
+    
+    def mostrarlista(self):
+        for indice,tarea in enumerate(lista):
+            print(f'{indice}: {tarea}')
+
+    def agregar(self):
         while True:
             agregar_producto = str(input('Ingrese el nombre del producto: '))
             lista.append(agregar_producto)
             break
-    def eliminar():
+
+    def eliminar(self):
             print('¿Qué producto desea eliminar?')
             TablaGeneral.mostrarlista()
             while True: 
@@ -54,6 +57,31 @@ def sistema():
     while True:
         sistema = int(input('Ingrese una opción: '))
         if sistema == 1:
-            
+            print('Bienvenido. ¿Qué desea hacer?')
+            print('[1]  Agregar tarea\n[2] Eliminar tarea\n[3] Mostrar tareas')
+            opcionUsuario =  int(input('Ingrese una opción: '))
+            if opcionUsuario == 1:
+                while True:
+                    print('¿Desea agregar fecha?\n[1] Sí. [2] No.')
+                    opcionAgregar = int(input('Ingrese una opción: '))
+                    if opcionAgregar == 1:
+                        TablaGeneral.agregar()
+                        continue
+                    elif opcionAgregar == 2:
+                        TablaConFecha.agregar()
+                        continue
+                    else:
+                        print('Por favor, ingrese una opción válida.')
+                        break
+            elif opcionUsuario == 2:
+                TablaGeneral.eliminar()
+            elif opcionUsuario == 3:
+                TablaGeneral.listartarea()
+                if lista == []:
+                    print('No hay tareas')
+            else:
+                print('Opción no válida')
         if sistema == 2:
             break
+
+sistema()
